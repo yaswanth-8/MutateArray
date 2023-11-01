@@ -5,6 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "MutateArray",
+    platforms: [
+      .iOS(.v13),
+      .macOS(.v10_15),
+      .tvOS(.v13),
+      .watchOS(.v6),
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -12,12 +18,16 @@ let package = Package(
             targets: ["MutateArray"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", .upToNextMajor(from: "1.3.0")),
+        .package(url:"https://github.com/pointfreeco/swift-composable-architecture", from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "MutateArray"),
+            name: "MutateArray",
+            dependencies: [
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
+            ]
+        ),
     ]
 )
