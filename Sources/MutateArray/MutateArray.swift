@@ -15,3 +15,16 @@ public func appendOrRemoveFromArray<T: Equatable>(_ inputArray: inout Identified
     }
     return inputArray
 }
+
+public func appendOrRemoveFromArray<T: Equatable>(_ inputArray: inout [T], _ element: T) -> [T] {
+    if let index = inputArray.firstIndex(where: { $0 == element }) {
+        print("Element exists, so removing it.")
+        inputArray.remove(at: index)
+    } else {
+        print("Element doesn't exist, so appending it.")
+        inputArray.append(element)
+    }
+    return inputArray
+}
+
+
